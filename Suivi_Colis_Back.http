@@ -1,0 +1,6 @@
+@Suivi_Colis_Back_HostAddress = http://localhost:5173
+
+GET {{Suivi_Colis_Back_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
