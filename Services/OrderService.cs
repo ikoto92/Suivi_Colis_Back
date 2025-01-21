@@ -15,9 +15,10 @@ namespace Suivi_Colis_Back.Services
             _mapper = mapper;
         }
 
-        public OrderDto GetOrderById(int id)
+        // Recherche par trackId (string)
+        public OrderDto GetOrderById(string trackId)
         {
-            var order = _repository.GetOrderById(id);
+            var order = _repository.GetOrderById(trackId);
             return order == null ? null : _mapper.MapToDto(order);
         }
 
@@ -33,15 +34,17 @@ namespace Suivi_Colis_Back.Services
             _repository.AddOrder(order);
         }
 
+        // Mise à jour de la commande par id (int)
         public void UpdateOrder(int id, UpdateOrderDto dto)
         {
-            var order = _repository.GetOrderById(id);
+            var order = _repository.GetOrderById(id);  
             if (order == null) return;
 
             order.Status = dto.Status;
             _repository.UpdateOrder(order);
         }
 
+        // Suppression de la commande par id (int)
         public void DeleteOrder(int id)
         {
             _repository.DeleteOrder(id);

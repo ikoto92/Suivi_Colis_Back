@@ -13,12 +13,22 @@ namespace Suivi_Colis_Back.Repositories
             _context = context;
         }
 
+      
         public Order GetOrderById(int id)
         {
             return _context.Orders
                 .Include(o => o.Product)
                 .Include(o => o.Customer)
-                .FirstOrDefault(o => o.Id == id);
+                .FirstOrDefault(o => o.Id == id); 
+        }
+
+        // Recherche par trackId (string)
+        public Order GetOrderById(string trackId)
+        {
+            return _context.Orders
+                .Include(o => o.Product)
+                .Include(o => o.Customer)
+                .FirstOrDefault(o => o.TrackId == trackId);  
         }
 
         public IEnumerable<Order> GetAllOrders()

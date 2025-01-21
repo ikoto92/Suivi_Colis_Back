@@ -34,6 +34,8 @@ builder.Services.AddScoped<IPdfService, PdfService>();
 //builder.Services.AddScoped<IInvoiceService, InvoiceService>(); 
 
 // Ajouter les services nécessaires pour les sessions
+//@https://devtobecurious.fr/utiliser-la-session-dans-un-projet-asp-net-core-dcouvrons-asp-net-core-avec-c/
+//@https://learn.microsoft.com/fr-fr/aspnet/core/fundamentals/app-state?view=aspnetcore-8.0
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {

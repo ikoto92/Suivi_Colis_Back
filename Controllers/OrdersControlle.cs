@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Suivi_Colis_Back.DTOs;
 using Suivi_Colis_Back.Repositories;
+using Suivi_Colis_Back.Services;
 
 namespace Suivi_Colis_Back.Controllers
 {
@@ -16,10 +17,10 @@ namespace Suivi_Colis_Back.Controllers
             _service = service;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetOrder(int id)
+        [HttpGet("show/{TrackId}")]
+        public IActionResult GetOrder(string TrackId)
         {
-            var order = _service.GetOrderById(id);
+            var order = _service.GetOrderById(TrackId);
             if (order == null)
                 return NotFound();
 
@@ -33,21 +34,21 @@ namespace Suivi_Colis_Back.Controllers
             return Ok(orders);
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult CreateOrder([FromBody] CreateOrderDto dto)
         {
             _service.AddOrder(dto);
             return Ok();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("UpdateStatus/{id}")]
         public IActionResult UpdateOrder(int id, [FromBody] UpdateOrderDto dto)
         {
             _service.UpdateOrder(id, dto);
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         public IActionResult DeleteOrder(int id)
         {
             _service.DeleteOrder(id);
