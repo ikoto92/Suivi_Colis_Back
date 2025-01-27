@@ -6,6 +6,8 @@
         public string InvoiceNumber { get; set; }
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
-        public Order order { get; set; }
+
+        public int OrderId { get; set; } // Clé étrangère explicite
+        public Order Order { get; set; }
     }
 }
